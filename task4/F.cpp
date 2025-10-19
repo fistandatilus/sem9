@@ -44,22 +44,22 @@ int main ()
 {
     int n, q;
     scanf ("%d%d", &n, &q);
-    std::vector<unsigned long long> a(n);
-    for (int i = 0; i < n; i++)
+    unsigned long long a, c = 0;
+    scanf ("%lld", &a);
+    for (int i = 1; i < n; i++)
     {
-        scanf ("%lld", &a[i]);
+        unsigned long long cur;
+        scanf ("%lld", &cur);
+        cur = cur < a ? (a - cur) : (cur - a);
+        c = gcd (cur, c);
     }
-    std::sort (a.begin(), a.end());
     for (int i = 0; i < q; i++)
     {
         unsigned long long x;
         scanf ("%lld", &x);
-        unsigned long long int c = 0;
-        for (int j = 0; j < n; j++)
-        {
-            c = gcd(x + a[j], c);
-        }
-        printf ("%lld ", c);
+        unsigned long long int res = 0;
+            res = gcd(x + a, c);
+        printf ("%lld ", res);
     }
     printf ("\n");
     return 0;
